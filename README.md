@@ -46,10 +46,10 @@
 
 **Database (PostgreSQL)**
 
-- Users Table (id, email, name, createdAt)
+- Users Table (uuid, email, name, hashed password, createdAt)
 - Acne Logs Table (id, userId, date, severity, location, triggers, treatment, notes)
 
-**Authentication **
+**Authentication**
 
 - Store session tokens (or JWT for API auth)
 

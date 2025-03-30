@@ -15,7 +15,7 @@ function Navbar () {
                 <ul>
                     <Link to='/'>Home</Link>
                     <Link to='/calendar'>Calendar</Link>
-                    <p>{user}</p>
+                    <p>Hello {user}!</p>
                     <button onClick={logout}>Logout</button>
                 </ul>
             ) : (
@@ -23,7 +23,7 @@ function Navbar () {
                     <Link to='/'>Home</Link>
                     <Link to='/calendar'>Calendar</Link>
                     <Link to='/login'>Login</Link>
-                    {/* <Link to='/signup'>Signup</Link> */}
+                    <Link to='/signup'>Signup</Link>
                 </ul>
             )}  
         </div>

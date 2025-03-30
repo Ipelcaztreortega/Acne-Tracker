@@ -1,7 +1,7 @@
 import { useState } from "react";
-import Calendar from "react-calendar"; // Install this if needed: npm install react-calendar
+import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css"; // This adds CSS, which look nice
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 
 const CalendarPage = () => {
