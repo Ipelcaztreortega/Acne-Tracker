@@ -16,7 +16,7 @@ router.post('/register', validInfo,  async (req, res) => {
             email
         ]);
         if (user.rows.length !== 0) {
-            return res.status(401).send("User already exists"); // 401 unauthenticated, 301 is not authorized
+            return res.status(401).json("User already exists"); // 401 unauthenticated, 301 is not authorized
         };
 
         // 3. Bcrypt the password
@@ -70,6 +70,7 @@ router.post('/login', validInfo, async (req, res) => {
         // 4. Give them the jwt token
         const token = jwtGenerator(user.rows[0].user_id);
         res.json({token});
+        
     } catch (err) {
         console.log(err.message);
         res.status(500).send('Server Error')

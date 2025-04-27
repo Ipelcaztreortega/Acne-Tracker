@@ -22,6 +22,8 @@ app.use('/auth', require('./routes/jwtAuth'));
 // Dashboard route
 app.use('/dashboard', require('./routes/dashboard'));
 
+app.use('/entry', require('./routes/entry'));
+
 app.listen(port, () => {
     console.log(`Acne-tracker listening on port: ${port}!`);
 });

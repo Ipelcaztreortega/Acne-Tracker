@@ -3,7 +3,11 @@ import {BrowserRouter as Router, Routes, Route, Navigate} from 'react-router-dom
 import Dashboard from './components/Dashboard';
 import Login from './components/Login';
 import Register from './components/Register';
-import "react-toastify/dist/ReactToastify.css";
+import CalendarPage from './pages/CalendarPage';
+import Home from './pages/Home';
+import Navbar from './components/Navbar';
+import Entry from './pages/Entry';
+import Overview from './pages/Overview';
 
 function App () {
 
@@ -33,12 +37,13 @@ function App () {
 
   useEffect(() => {
     isAuth();
-  })
+  }, [])
 
 
   return(
     <Fragment>
       <Router>
+        <Navbar setAuth={setAuth} isAuthenthicated={isAuthenthicated} />
         <div className='container'>
           <Routes>
             <Route 
@@ -53,6 +58,22 @@ function App () {
             <Route 
               path='/dashboard' 
               element={isAuthenthicated ? (<Dashboard setAuth={setAuth}/>) : (<Navigate to="/login" />)}
+            />
+            <Route 
+              path='/calendar' 
+              element={isAuthenthicated ? (<CalendarPage/>) : (<Navigate to="/login" />)}
+            />
+            <Route 
+              path='/' 
+              element={isAuthenthicated ? (<Navigate to="/dashboard" />) : (<Home />)} 
+            />
+            <Route
+              path='/entry'
+              element={isAuthenthicated ? (<Entry />) : (<Navigate to="/login" />)}
+            />
+            <Route
+              path='/overview'
+              element={isAuthenthicated ? (<Overview />) : (<Navigate to="/login" />)}
             />
           </Routes>
         </div>
