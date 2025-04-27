@@ -32,14 +32,14 @@ router.post('/adding-entry', authorization, async (req, res) => {
 router.post('/getting-entries', authorization, async (req, res) => {
     try {
         const { user_id } = req.body;
-        const user_entries = await pool.query('SELECT entry_date, severity, notes FROM acne_entries WHERE user_id = $1', [user_id]);
+        const user_entries = await pool.query('SELECT entry_date, severity, notes, created_at FROM acne_entries WHERE user_id = $1', [user_id]);
 
         if (user_entries.rows.length === 0) {
             return res.status(201).json("User does not have any entries");
         };
 
         res.json(user_entries.rows);
-        console.log(user_entries.rows);
+        // console.log(user_entries.rows);
     } catch (err) {
         console.log(err.message);
         return res.status(500).json('Server Error')

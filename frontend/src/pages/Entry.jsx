@@ -5,7 +5,7 @@ const Entry = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const formattedDate = location.state?.selectedDate; 
-    // const name = location.state?.user_name;
+
     const user_id = location.state?.user_id.userID;
     const [inputs, setInputs] = useState({
         severity: "",
@@ -16,9 +16,6 @@ const Entry = () => {
     const onChange = (e) => {
         setInputs({...inputs , [e.target.name] : e.target.value }) 
     }
-    // console.log(inputs)
-    // const body = {user_id, formattedDate, severity, notes};
-    // console.log(body);
 
     const onSubmitForm = async (e) => {
         e.preventDefault();
@@ -35,7 +32,7 @@ const Entry = () => {
 
             const parseRes = await response.json();
             console.log(parseRes);
-            navigate('/overview', {
+            navigate('/overview', { // We pass the user_id from overview
                 state: { 
                     user_id: user_id
                 }
@@ -51,13 +48,25 @@ const Entry = () => {
             <h1>Submit your acne entry</h1>
             <p>Acne Entry for {formattedDate}</p>
             <form onSubmit={onSubmitForm}>
-                <input 
+                {/* <input 
                     type="number" 
                     name="severity" 
                     placeholder="(1-10)" 
                     value={severity}
                     onChange={e => onChange(e)}
-                />
+                /> */}
+                <select 
+                    name="severity" 
+                    value={severity}
+                    onChange={e => onChange(e)}
+                >
+                    <option value="">Select severity</option>
+                    {[...Array(10)].map((_, index) => (
+                        <option key={index + 1} value={index + 1}>
+                            {index + 1}
+                        </option>
+                    ))}
+                </select>
 
                 <input 
                     type="text" 
